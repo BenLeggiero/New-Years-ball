@@ -52,6 +52,8 @@
 
     <script>
 
+    const startDate = new Date()
+
     function positionBall() {
         const $ball = $("#ball")
 
@@ -59,10 +61,11 @@
         // const targetDate = new Date("Dec 31, 2019 12:35:00")
         const now = new Date()
 
+        const secondsFromStartToTarget = (targetDate.getTime() - startDate.getTime()) / 1000
         const secondsLeft = (targetDate.getTime() - now.getTime()) / 1000
-        const percentTimeLeft = (secondsLeft / 86400) * 100
+        const percentTimeLeft = (secondsLeft / secondsFromStartToTarget) * 100
 
-        $ball.css("bottom", percentTimeLeft + "%")
+        $ball.css("bottom", `calc(${percentTimeLeft}% - ${$ball.height()}px)`)
     }
 
     $(function () {
