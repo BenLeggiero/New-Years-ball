@@ -1,0 +1,79 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Pole</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  </head>
+
+
+  <body>
+
+    <div class="container">
+
+      <img id="pole" src="pole.png">
+
+      <img id="ball" src="balldrop.gif">
+
+    </div>
+
+
+    <style>
+      body {
+        background-color: orange;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .container {
+        display: flex;
+        align-self: center;
+        justify-content: center;
+      }
+
+      #ball {
+        position: absolute;
+        transition: bottom 25ms linear;
+      }
+
+      #pole {
+        position: absolute;
+        height: 100vh;
+      }
+
+    </style>
+
+    <script>
+
+    function positionBall() {
+        const $ball = $("#ball")
+
+        const targetDate = new Date("Jan 1, 2020 00:00:00")
+        // const targetDate = new Date("Dec 31, 2019 12:35:00")
+        const now = new Date()
+
+        const secondsLeft = (targetDate.getTime() - now.getTime()) / 1000
+        const percentTimeLeft = (secondsLeft / 86400) * 100
+
+        $ball.css("bottom", percentTimeLeft + "%")
+    }
+
+    $(function () {
+
+        setInterval(positionBall, 100)
+    })
+
+
+
+    </script>
+
+
+
+  </body>
+</html>
